@@ -233,6 +233,10 @@ class Message
         if(!is_object($messageOverview = $this->getOverview()))
 
             return false;
+            
+        if(!property_exists($messageOverview, 'uid'))
+            
+            return false;
 
         $this->subject = isset($messageOverview->subject) ? imap_utf8($messageOverview->subject) : null;
         $this->date    = strtotime($messageOverview->date);
